@@ -64,6 +64,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 .share-box button:hover { background: var(--gold); color: #17130e; }
 .copy-status { flex-basis: 100%; min-height: 1.3em; color: var(--gold); font-size: 13px; }
 .site-footer { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 24px 0 34px; border-top: 1px solid rgba(234, 214, 179, .12); color: var(--muted); font-size: 12px; letter-spacing: .08em; }
+.site-footer .personal-site-link { flex: 0 0 100%; color: var(--gold); text-align: center; font-size: 13px; line-height: 1.8; text-wrap: balance; }
+.site-footer .personal-site-link:hover { color: var(--ink); }
 @media (max-width: 900px) {
   .site-shell { width: min(740px, calc(100% - 48px)); }
   .work-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
