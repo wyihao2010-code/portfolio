@@ -16,14 +16,3 @@ copy.addEventListener('click', async () => {
   }
 });
 document.querySelector('#year').textContent = new Date().getFullYear();
-
-// A restrained light response follows the pointer on devices that support hover.
-if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
-  document.querySelectorAll('.work-card').forEach((card) => {
-    card.addEventListener('pointermove', (event) => {
-      const bounds = card.getBoundingClientRect();
-      card.style.setProperty('--x', `${event.clientX - bounds.left}px`);
-      card.style.setProperty('--y', `${event.clientY - bounds.top}px`);
-    });
-  });
-}
