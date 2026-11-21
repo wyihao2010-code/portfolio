@@ -104,3 +104,29 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-
 /* Extend the existing link over its card without changing the reference layout. */
 .work-link::after { content: ""; position: absolute; inset: 0; }
 .work-card:hover .work-link, .work-card:focus-within .work-link { color: var(--gold); }
+
+/* Product introductions */
+.tools-section { padding-top: 112px; }
+.tools-heading { text-align:center; margin-bottom:36px; }
+.tools-heading h2 { font-size:clamp(30px,4vw,45px); font-weight:400; letter-spacing:.1em; margin:18px 0 12px; }
+.tools-heading > p:last-child { color:var(--muted); font-size:14px; }
+.tools-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.tool-entry { min-height:325px; border:1px solid var(--line); background:#131417; padding:38px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden; transition:border-color .25s,transform .25s; }
+.tool-entry:hover { border-color:var(--gold); transform:translateY(-3px); }
+.tool-entry h3 { font-size:30px; font-weight:400; line-height:1.4; margin:22px 0 12px; }
+.tool-entry p:not(.work-label) { color:var(--muted); line-height:1.8; font-size:14px; }
+.tool-entry span { display:block; color:var(--gold); font-size:13px; margin-top:28px; }
+.entry-art { position:relative; align-self:stretch; display:grid; place-items:center; }
+.entry-art:before { content:''; position:absolute; width:210px; height:210px; border-radius:50%; background:radial-gradient(circle,rgba(185,145,88,.17),transparent 70%); }
+.entry-island,.entry-clip { z-index:1; background:#050505; border:1px solid #474039; box-shadow:0 20px 40px #0008; }
+.entry-island { width:180px; border-radius:0 0 24px 24px; padding:25px; display:flex; gap:16px; align-items:center; justify-content:center; color:var(--gold); }
+.entry-island i { width:7px; height:7px; border-radius:50%; background:#90b7a0; }
+.entry-clip { width:200px; padding:20px; border-radius:10px; transform:rotate(-4deg); }
+.entry-clip small,.entry-clip b,.entry-clip em { display:block; font-style:normal; }.entry-clip small,.entry-clip em { color:#a99b88; font-size:11px; }.entry-clip b { font-size:14px; margin:20px 0; font-weight:400; }
+@media(max-width:700px){.tools-grid{grid-template-columns:1fr}.tool-entry{padding:28px;min-height:260px}.tools-section{padding-top:80px}.entry-island{width:145px}.entry-clip{width:150px}.tool-entry h3{font-size:26px}}
+.entry-type { font: 130px Georgia,serif; color:rgba(210,174,116,.4); line-height:1; }.entry-type span { z-index:1; position:absolute; bottom:10%; right:10%; font:11px Georgia,serif; letter-spacing:.2em; color:var(--gold); }
+/* Portfolio groups */
+.catalog-heading { text-align:center; margin:0 0 35px; }.catalog-heading h2 { font-weight:400; font-size:clamp(29px,3.2vw,39px); letter-spacing:.1em; margin:16px 0 12px; }.catalog-heading>p:last-child { color:var(--muted); font-size:14px; line-height:1.8; }.genealogy-heading { margin-top:110px; }
+.work-card h3 { margin:22px 0 13px; font-family:var(--display); font-weight:400; font-size:clamp(25px,2.6vw,34px); letter-spacing:.04em; line-height:1.35; }.catalog-tools h3 { font-family:Georgia,var(--display); letter-spacing:0; overflow-wrap:anywhere; }.catalog-genealogy { grid-template-columns:repeat(2,minmax(0,1fr)); }.catalog-genealogy .work-description { min-height:0; }.catalog-art { display:grid; place-items:center; background:radial-gradient(circle at 50% 70%,#68543b50,transparent 65%),#0d0e10; }.catalog-art span { font:clamp(70px,8vw,115px) Georgia,serif; color:#d2ae7470; transition:transform .35s; }.work-card:hover .catalog-art span { transform:scale(1.04); }
+@media(max-width:900px){.catalog-tools .voice { display:flex; }.catalog-tools .voice .work-visual { margin-top:24px; }.catalog-tools .work-card:last-child { grid-column:1/-1; }.catalog-genealogy .work-card:last-child { grid-column:auto; }}
+@media(max-width:600px){.catalog-genealogy{grid-template-columns:1fr}.catalog-tools .work-card:last-child{grid-column:auto}.genealogy-heading{margin-top:78px}.work-card h3{font-size:29px;margin-top:19px}.catalog-art span{font-size:90px}}

@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0c0e">
-  <meta name="description" content="兔仔很忙的作品集：希腊神话家族谱系、明清皇室世系谱与 VoiceMemory。">
+  <meta name="description" content="兔仔很忙的作品集：VoiceMemory、ClipStash、Notch 与交互式族谱。">
   <title>兔仔很忙 · 作品集</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=20261101-footer">
+  <link rel="stylesheet" href="style.css?v=20261121-portfolio">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -22,25 +22,39 @@
       <section class="hero" aria-labelledby="hero-title">
         <p class="eyebrow">A COLLECTION BY TUZAIHENMANG</p>
         <h1 id="hero-title">兔仔很忙<span>的作品集</span></h1>
-        <p class="hero-intro">从神话与历史的脉络，到记录生活的工具。<br>在这里，探索我做过的一些作品。</p>
+        <p class="hero-intro">从记录与整理日常的工具，到神话与历史的脉络。<br>在这里，探索我做过的一些作品。</p>
       </section>
 
       <section class="works" id="works" aria-label="作品">
-        <div class="work-list">
+        <div class="catalog-heading"><p class="eyebrow">TOOLS FOR EVERYDAY</p><h2>让日常更顺手</h2><p>记录想法、整理内容，也让常用信息和文件随手可及。</p></div>
+        <div class="work-list catalog-tools">
+          <article class="work-card voice">
+            <div class="work-copy"><p class="work-label">VOICE MEMORY</p><h3 lang="en">VoiceMemory</h3><p class="work-description">本机优先的语音记录工具，融合录音、转写、人物记忆与 AI 摘要，帮助整理每一次表达。</p></div>
+            <div class="work-visual"><img src="assets/voicememory.png" alt="VoiceMemory 官网展示页面" loading="eager"></div>
+            <a class="work-link" href="https://wyihao2010-code.github.io/VoiceMemory-website/">了解 VoiceMemory <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="work-card catalog-product">
+            <div class="work-copy"><p class="work-label">CLIPSTASH</p><h3 lang="en">ClipStash</h3><p class="work-description">剪贴板历史、截图标注、文字识别与翻译，让复制过的内容更容易找回和使用。</p></div>
+            <div class="work-visual catalog-art" aria-hidden="true"><span>C</span></div>
+            <a class="work-link" href="clipstash.html">了解 ClipStash <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="work-card catalog-product">
+            <div class="work-copy"><p class="work-label">NOTCH</p><h3 lang="en">Notch</h3><p class="work-description">将 Codex 额度、系统状态、文件容器与日历提醒，轻巧地呈现在 Mac 屏幕顶部。</p></div>
+            <div class="work-visual catalog-art" aria-hidden="true"><span>N</span></div>
+            <a class="work-link" href="notch.html">了解 Notch <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <div class="catalog-heading genealogy-heading"><p class="eyebrow">STORIES &amp; CONNECTIONS</p><h2>探索人物与传承</h2><p>沿着人物关系，走进神话与历史中的故事。</p></div>
+        <div class="work-list catalog-genealogy">
           <article class="work-card mythology">
-            <div class="work-copy"><p class="work-label">GREEK MYTHOLOGY</p><h2>希腊神话<br>家族谱系</h2><p class="work-description">从众神的起源到英雄的传说，以交互式家族树探索神话中的人物与关系。</p></div>
-            <div class="work-visual"><img src="assets/theogony.png" alt="希腊神话家族谱系的交互图谱" loading="eager"></div>
+            <div class="work-copy"><p class="work-label">GREEK MYTHOLOGY</p><h3>希腊神话家族谱系</h3><p class="work-description">从众神的起源到英雄的传说，以交互式家族树探索神话中的人物与关系。</p></div>
+            <div class="work-visual"><img src="assets/theogony.png" alt="希腊神话家族谱系的交互图谱" loading="lazy"></div>
             <a class="work-link" href="https://wyihao2010-code.github.io/Theogony/">进入希腊神话 <span aria-hidden="true">→</span></a>
           </article>
           <article class="work-card history">
-            <div class="work-copy"><p class="work-label">IMPERIAL GENEALOGY</p><h2>明清皇室<br>世系谱</h2><p class="work-description">以世系为轴，浏览明清两代皇室的核心人物、家族关系与皇位传承。</p></div>
-            <div class="work-visual"><img src="assets/genealogy.png" alt="明代皇室世系关系的交互图谱" loading="eager"></div>
+            <div class="work-copy"><p class="work-label">IMPERIAL GENEALOGY</p><h3>明清皇室世系谱</h3><p class="work-description">以世系为轴，浏览明清两代皇室的核心人物、家族关系与皇位传承。</p></div>
+            <div class="work-visual"><img src="assets/genealogy.png" alt="明代皇室世系关系的交互图谱" loading="lazy"></div>
             <a class="work-link" href="https://wyihao2010-code.github.io/chinese-imperial-genealogy/">进入明清图谱 <span aria-hidden="true">→</span></a>
-          </article>
-          <article class="work-card voice">
-            <div class="work-copy"><p class="work-label">VOICE MEMORY</p><h2 lang="en">Voice<br>Memory</h2><p class="work-description">一款本机优先的语音记录工具，融合录音、转写、人物记忆与 AI 摘要，并持续完善待办和智能章节整理。</p></div>
-            <div class="work-visual"><img src="assets/voicememory.png" alt="VoiceMemory 官网展示页面" loading="eager"></div>
-            <a class="work-link" href="https://wyihao2010-code.github.io/VoiceMemory-website/">了解 VoiceMemory <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </section>
