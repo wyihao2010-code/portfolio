@@ -63,3 +63,19 @@
 .capture-tooltip { position:fixed; z-index:20; transform:translate(-50%,-100%); padding:5px 9px; border-radius:5px; background:rgba(31,32,32,.94); box-shadow:0 2px 8px #0006; color:#fff; font:600 11px -apple-system,BlinkMacSystemFont,sans-serif; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity .12s; }.capture-tooltip.visible{opacity:1}
 @media(max-width:700px){.capture-toolbar-wrap{width:95%}}
 .capture-properties { color:var(--gold); font-size:12px; line-height:1.6; letter-spacing:.04em; text-align:center; max-width:90%; }
+
+/* Keep the active tool blue, including while the pointer is over it. */
+.capture-toolbar button.selected, .capture-toolbar button.selected:hover { background:#0a84ff; color:#fff; }
+@media (min-width:901px) {
+  .single-line-desktop { white-space:nowrap; }
+  .intro-section > p.single-line-desktop { max-width:none; }
+  .feature-list article.wide-copy { grid-template-columns:85px minmax(0,1fr) 100px; gap:20px; }
+  .feature-list .wide-copy p.single-line-desktop { max-width:none; font-size:clamp(12px, 1vw, 14px); }
+}
+@media (min-width:701px) and (max-width:900px) {
+  .single-line-desktop { white-space:nowrap; }
+  .intro-section > p.single-line-desktop { max-width:none; font-size:14px; }
+  .feature-list article.wide-copy { grid-template-columns:minmax(0,1fr) 65px; gap:20px; }
+  .feature-list article.wide-copy > span { grid-column:1 / -1; }
+  .feature-list .wide-copy p.single-line-desktop { max-width:none; font-size:12px; }
+}
