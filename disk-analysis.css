@@ -1,0 +1,1093 @@
+/* 磁盘空间分析专题页：融合作品集深色暖金骨架与 DaisyDisk / Apple 极简视觉 */
+
+.disk-page {
+  background:
+    radial-gradient(ellipse 68% 420px at 50% 0%, rgba(154, 118, 68, 0.16), transparent 72%),
+    radial-gradient(circle 420px at 50% 420px, rgba(84, 152, 255, 0.06), transparent 70%),
+    linear-gradient(160deg, #111317, #08090b 68%);
+}
+
+.disk-hero {
+  padding: clamp(82px, 10vw, 136px) 0 64px;
+}
+
+.disk-hero-sub {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.disk-hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.disk-hero-actions .text-link {
+  margin-top: 0;
+}
+
+.text-link.secondary {
+  color: var(--muted);
+}
+
+.text-link.secondary:hover {
+  color: var(--ink);
+}
+
+/* 交互舞台：纯黑 macOS 原生窗口质感 */
+.disk-stage {
+  border-color: rgba(234, 214, 179, 0.22);
+  background: #050507;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.65);
+}
+
+.disk-window {
+  position: relative;
+  background: #000;
+  color: #f4f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.disk-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+}
+
+.disk-title-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.traffic-dots {
+  display: inline-flex;
+  gap: 7px;
+  flex: none;
+}
+
+.traffic-dots i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.traffic-dots i:nth-child(1) { background: #ff5f57; }
+.traffic-dots i:nth-child(2) { background: #febc2e; }
+.traffic-dots i:nth-child(3) { background: #28c840; }
+
+.disk-title-left strong {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+.disk-notice {
+  font-size: 12px;
+  color: #8cc4ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.disk-title-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.volume-switcher {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.volume-switcher button {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.volume-switcher button.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.disk-ctrl-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.disk-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+}
+
+.disk-ctrl-btn.accent {
+  border-color: rgba(92, 163, 255, 0.55);
+  background: rgba(10, 132, 255, 0.22);
+  color: #bfe0ff;
+}
+
+.disk-ctrl-btn.accent:hover {
+  background: rgba(10, 132, 255, 0.36);
+  color: #fff;
+}
+
+.disk-ctrl-btn.is-hidden {
+  display: none;
+}
+
+/* 面包屑导航 */
+.disk-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.015);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.disk-breadcrumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.crumb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.crumb-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+.crumb-btn.current {
+  color: #fff;
+  font-weight: 600;
+  cursor: default;
+}
+
+.crumb-btn.current:hover {
+  background: transparent;
+}
+
+.crumb-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.crumb-sep {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 11px;
+  user-select: none;
+}
+
+/* 主工作区：左侧旭日图 + 右侧目录列表 */
+.disk-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.85fr);
+  min-height: 540px;
+}
+
+.disk-chart-pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 24px 86px;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.04), transparent 58%),
+    #000;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sunburst-stage {
+  position: relative;
+  width: min(440px, 100%);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.sunburst-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  user-select: none;
+}
+
+.sunburst-sector {
+  cursor: pointer;
+  stroke: #000;
+  stroke-linejoin: round;
+  transition: opacity 0.18s ease, filter 0.18s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: 280px 280px;
+}
+
+.sunburst-svg.has-hover .sunburst-sector {
+  opacity: 0.42;
+}
+
+.sunburst-svg.has-hover .sunburst-sector.is-active,
+.sunburst-svg.has-hover .sunburst-sector.is-related {
+  opacity: 1;
+}
+
+.sunburst-sector.is-active {
+  filter: brightness(1.16) saturate(1.08);
+}
+
+.sunburst-sector.is-bouncing {
+  animation: leaf-bounce 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes leaf-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.032); }
+  100% { transform: scale(1); }
+}
+
+.sunburst-center {
+  position: absolute;
+  width: 29.5%;
+  height: 29.5%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 50% 30%, #17191f, #060608 75%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  cursor: default;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+  transition: border-color 0.18s ease, transform 0.18s ease, background-color 0.18s ease;
+}
+
+.sunburst-center.can-back {
+  cursor: pointer;
+}
+
+.sunburst-center.can-back:hover {
+  border-color: rgba(210, 174, 116, 0.55);
+  transform: scale(1.03);
+}
+
+.center-back {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  min-height: 14px;
+  letter-spacing: 0.04em;
+}
+
+.center-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.94);
+  max-width: 92%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.center-size {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.center-size b {
+  font-size: clamp(19px, 2.2vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.center-size small {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.center-meta {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.48);
+  margin-top: 4px;
+  max-width: 92%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chart-footnote {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* 右侧目录列表 */
+.disk-list-pane {
+  display: flex;
+  flex-direction: column;
+  background: #07080a;
+  min-width: 0;
+}
+
+.disk-list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.disk-list-head strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.disk-list-head small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.list-hint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.38);
+  white-space: nowrap;
+}
+
+.disk-list {
+  flex: 1;
+  padding: 10px 10px 84px;
+  overflow-y: auto;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.disk-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.disk-row:hover,
+.disk-row.is-active {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.11);
+}
+
+.disk-row.is-bouncing {
+  transform: translateX(4px);
+}
+
+.row-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  justify-self: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+}
+
+.row-swatch.is-file {
+  border-radius: 50%;
+}
+
+.row-main {
+  min-width: 0;
+}
+
+.row-title-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.row-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-kind {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.42);
+  flex: none;
+}
+
+.row-meter {
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.row-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.row-size {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.row-collect-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.78);
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.row-collect-btn:hover {
+  background: rgba(10, 132, 255, 0.25);
+  border-color: rgba(92, 163, 255, 0.65);
+  color: #fff;
+}
+
+.disk-empty-state {
+  padding: 56px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* 底部悬浮收集器胶囊：复刻 DiskCollectorView */
+.disk-collector {
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  z-index: 6;
+  width: min(370px, calc(100% - 40px));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(20, 22, 27, 0.88);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.disk-collector.is-drop-target {
+  border-color: #5ca3ff;
+  box-shadow: 0 0 0 3px rgba(92, 163, 255, 0.25), 0 20px 50px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
+}
+
+.disk-collector.has-items {
+  border-color: rgba(92, 163, 255, 0.36);
+}
+
+.collector-drawer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  max-height: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.collector-drawer[hidden] {
+  display: none;
+}
+
+.collector-drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.collector-drawer-head > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.collector-drawer-head strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.collector-badge {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-variant-numeric: tabular-nums;
+}
+
+.collector-clear-btn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+.collector-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.collector-items {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.collector-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 12px;
+}
+
+.collector-item-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.collector-item-size {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.56);
+  font-variant-numeric: tabular-nums;
+}
+
+.collector-remove-btn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+}
+
+.collector-remove-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.collector-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 9px 12px;
+}
+
+.collector-toggle {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.collector-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(92, 163, 255, 0.14);
+  color: #6eb2ff;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.collector-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.collector-summary {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.collector-summary strong {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.collector-summary small {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collector-trash-btn {
+  flex: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 8px 13px;
+  background: #0a84ff;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s ease, opacity 0.18s ease;
+}
+
+.collector-trash-btn:hover:not(:disabled) {
+  background: #2b95ff;
+}
+
+.collector-trash-btn:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.32);
+  cursor: not-allowed;
+}
+
+/* 叙事过渡区 */
+.disk-intro {
+  padding: 132px 0 92px;
+}
+
+/* Apple 风格 Bento 特性网格 */
+.disk-bento {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 110px;
+}
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: clamp(28px, 3vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(210, 174, 116, 0.09), transparent 55%),
+    #111215;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.bento-card:hover {
+  border-color: rgba(210, 174, 116, 0.52);
+  transform: translateY(-2px);
+}
+
+.bento-card.span-7 { grid-column: span 7; }
+.bento-card.span-5 { grid-column: span 5; }
+
+.bento-index {
+  display: inline-block;
+  color: var(--gold);
+  font: 11px Georgia, serif;
+  letter-spacing: 0.18em;
+}
+
+.bento-card h3 {
+  margin: 16px 0 12px;
+  font-size: clamp(24px, 2.3vw, 30px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.38;
+}
+
+.bento-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.bento-card code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Bento 内部微型可视化 */
+.medium-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+}
+
+.medium-item span {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.medium-item strong {
+  display: block;
+  margin: 5px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.medium-bar {
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+.medium-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #d2ae74, #6eb2ff);
+}
+
+.shield-chips,
+.native-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+}
+
+.shield-chips span,
+.native-pills span {
+  font-size: 11.5px;
+  color: rgba(240, 232, 216, 0.84);
+  padding: 5px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(234, 214, 179, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.accuracy-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.accuracy-metrics strong {
+  display: block;
+  font-family: Georgia, var(--display);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1.1;
+}
+
+.accuracy-metrics span {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 三步工作流 */
+.disk-workflow {
+  border-top: 1px solid var(--line);
+  padding: 96px 0;
+}
+
+.workflow-heading {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.workflow-heading h2 {
+  margin: 16px 0 0;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.workflow-step {
+  padding: 30px 26px;
+  border: 1px solid rgba(234, 214, 179, 0.14);
+  background: rgba(19, 20, 23, 0.72);
+  border-radius: 4px;
+}
+
+.workflow-step span {
+  display: inline-block;
+  font: 12px Georgia, serif;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+.workflow-step h3 {
+  margin: 18px 0 12px;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.workflow-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* 极简技术规格条 */
+.disk-specs {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 46px 0;
+}
+
+.specs-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.specs-grid dt {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.specs-grid dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* 底部双操作收尾 */
+.disk-closing .closing-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 30px;
+}
+
+.disk-closing .closing-actions .text-link {
+  margin-top: 0;
+}
+
+/* 响应式 */
+@media (max-width: 960px) {
+  .disk-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .disk-chart-pane {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 18px 26px;
+  }
+
+  .disk-list {
+    max-height: 360px;
+    padding-bottom: 92px;
+  }
+
+  .bento-card.span-7,
+  .bento-card.span-5 {
+    grid-column: span 12;
+  }
+
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .specs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .disk-hero {
+    padding: 78px 0 48px;
+  }
+
+  .disk-titlebar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+  }
+
+  .disk-title-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sunburst-stage {
+    width: min(320px, 100%);
+  }
+
+  .center-name {
+    font-size: 11px;
+  }
+
+  .center-size b {
+    font-size: 18px;
+  }
+
+  .disk-collector {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+
+  .medium-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .disk-intro {
+    padding: 88px 0 64px;
+  }
+
+  .disk-bento {
+    padding-bottom: 72px;
+  }
+
+  .disk-workflow {
+    padding: 68px 0;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sunburst-sector,
+  .sunburst-center,
+  .disk-collector,
+  .bento-card {
+    transition: none !important;
+    animation: none !important;
+  }
+}

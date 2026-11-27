@@ -98,3 +98,28 @@
 @media (min-width:701px) {
   .capture-toolbar-wrap { width:min(740px,92%); }
 }
+
+/* ClipStash 演示区：固定面板与右侧提示文字占位，切换标签/工具卡片零跳动 */
+.popover-demo { flex:none; }
+.pop-hint { width:276px; flex:none; min-height:78px; margin:0; }
+@media (max-width:700px) {
+  .pop-hint { width:100%; max-width:340px; min-height:66px; }
+}
+
+/* ClipStash 内置工具专题入口（磁盘空间分析） */
+.feature-inline-link { display:inline-block; margin-top:14px; color:var(--gold); font-size:13px; letter-spacing:.08em; transition:color .2s; }
+.feature-inline-link:hover { color:var(--ink); }
+.subtool-spotlight { margin-top:84px; padding:clamp(32px,4vw,54px); border:1px solid var(--line); border-radius:4px; background:radial-gradient(circle at 82% 50%,rgba(94,158,255,.09),transparent 48%),radial-gradient(circle at 18% 0%,rgba(210,174,116,.1),transparent 52%),#0e0f12; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(220px,.75fr); align-items:center; gap:36px; transition:border-color .25s ease; }
+.subtool-spotlight:hover { border-color:rgba(210,174,116,.55); }
+.subtool-copy h2 { margin:18px 0 14px; font-size:clamp(28px,3.2vw,40px); font-weight:400; letter-spacing:.06em; line-height:1.35; }
+.subtool-copy > p:not(.eyebrow) { margin:0; color:var(--muted); font-size:14.5px; line-height:1.95; max-width:520px; }
+.subtool-copy .text-link { margin-top:24px; }
+.subtool-visual { position:relative; display:grid; place-items:center; padding:18px; border:1px solid rgba(255,255,255,.09); border-radius:4px; background:#030405; overflow:hidden; transition:border-color .25s ease,transform .25s ease; }
+.subtool-visual:hover { border-color:rgba(210,174,116,.55); transform:translateY(-2px); }
+.mini-sunburst { width:min(210px,100%); height:auto; display:block; transition:transform .5s cubic-bezier(.22,1,.36,1); }
+.subtool-visual:hover .mini-sunburst { transform:rotate(8deg) scale(1.03); }
+.subtool-visual-tag { position:absolute; right:12px; bottom:10px; font:500 11px -apple-system,BlinkMacSystemFont,sans-serif; color:var(--gold); letter-spacing:.06em; }
+@media (max-width:760px) {
+  .subtool-spotlight { margin-top:56px; grid-template-columns:1fr; gap:26px; padding:26px; }
+  .mini-sunburst { width:180px; }
+}

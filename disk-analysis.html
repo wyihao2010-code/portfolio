@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="description" content="ClipStash 内置磁盘空间分析工具：全光谱交互旭日图、极速底层扫描、拖拽收集器预演与安全移入废纸篓一键撤销。">
+  <title>磁盘空间分析 · ClipStash · 兔仔很忙</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product.css?v=20261127-disk">
+  <link rel="stylesheet" href="disk-analysis.css?v=20261127-disk">
+  <script src="disk-analysis.js?v=20261127-disk" defer></script>
+</head>
+<body class="disk-page">
+  <a class="skip-link" href="#experience">跳至交互演示</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html">兔仔很忙</a>
+      <nav aria-label="页面导航">
+        <a href="clipstash.html">← ClipStash</a>
+        <a href="index.html#works">所有作品</a>
+        <a href="notch.html">Notch ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="product-hero disk-hero" id="top">
+        <p class="eyebrow">CLIPSTASH · BUILT-IN TOOL / DISK ANALYSIS</p>
+        <h1>看见空间，<span>从容清理</span></h1>
+        <p class="disk-hero-sub">将层层嵌套的磁盘占用化作全光谱旭日图。<br>逐层下钻定位大文件，拖入收集器预演释放，安全移入废纸篓并随时撤销。</p>
+        <div class="disk-hero-actions">
+          <a class="text-link" href="#experience">交互体验 <span>↓</span></a>
+          <a class="text-link secondary" href="clipstash.html">返回 ClipStash</a>
+        </div>
+      </section>
+
+      <section class="stage disk-stage" id="experience" aria-label="磁盘空间分析交互演示">
+        <div class="stage-top">
+          <span>DISK ANALYSIS · CLIPSTASH</span>
+          <span>INTERACTIVE PREVIEW / 网页演示</span>
+        </div>
+
+        <div class="disk-window">
+          <div class="disk-titlebar">
+            <div class="disk-title-left">
+              <span class="traffic-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <strong>磁盘空间分析</strong>
+              <span class="disk-notice" id="disk-notice" role="status" aria-live="polite"></span>
+            </div>
+            <div class="disk-title-controls">
+              <div class="volume-switcher" role="group" aria-label="切换演示磁盘">
+                <button type="button" class="active" data-volume="macintosh" aria-pressed="true">Macintosh HD</button>
+                <button type="button" data-volume="workspace" aria-pressed="false">项目工作盘</button>
+              </div>
+              <button type="button" class="disk-ctrl-btn accent is-hidden" id="disk-undo-btn">一键撤销</button>
+              <button type="button" class="disk-ctrl-btn" id="disk-reset-btn">重置演示</button>
+            </div>
+          </div>
+
+          <nav class="disk-breadcrumbs" id="disk-breadcrumbs" aria-label="目录层级路径"></nav>
+
+          <div class="disk-workspace">
+            <div class="disk-chart-pane">
+              <div class="sunburst-stage">
+                <svg id="disk-sunburst" class="sunburst-svg" viewBox="0 0 560 560" role="img" aria-label="交互式磁盘空间旭日图"></svg>
+                <button type="button" class="sunburst-center" id="sunburst-center" aria-label="当前目录概览，点击返回上级">
+                  <span class="center-back" id="center-back"></span>
+                  <strong class="center-name" id="center-name">Macintosh HD</strong>
+                  <span class="center-size" id="center-size"><b>348.6</b><small>GB</small></span>
+                  <span class="center-meta" id="center-meta">点击扇区下钻</span>
+                </button>
+              </div>
+              <p class="chart-footnote" id="chart-footnote">悬停扇区联动列表 · 点击文件夹下钻 · 拖拽扇区或点击 + 加入收集器</p>
+            </div>
+
+            <aside class="disk-list-pane" aria-label="当前目录明细">
+              <div class="disk-list-head">
+                <div>
+                  <strong id="list-title">Macintosh HD</strong>
+                  <small id="list-summary">共 5 项 · 348.6 GB</small>
+                </div>
+                <span class="list-hint">按磁盘占用排序</span>
+              </div>
+              <div class="disk-list" id="disk-list" role="list"></div>
+            </aside>
+          </div>
+
+          <div class="disk-collector" id="disk-collector" aria-label="待处理文件收集器">
+            <div class="collector-drawer" id="collector-drawer" hidden>
+              <div class="collector-drawer-head">
+                <div>
+                  <strong>待处理文件</strong>
+                  <span class="collector-badge" id="collector-drawer-count">0 项</span>
+                </div>
+                <button type="button" class="collector-clear-btn" id="collector-clear-btn">全部取消</button>
+              </div>
+              <div class="collector-items" id="collector-items"></div>
+            </div>
+            <div class="collector-bar" id="collector-bar">
+              <button type="button" class="collector-toggle" id="collector-toggle" aria-expanded="false" aria-controls="collector-drawer">
+                <span class="collector-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 4v11m0 0-4-4m4 4 4-4"/>
+                    <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                  </svg>
+                </span>
+                <span class="collector-summary" id="collector-summary">
+                  <strong>收集器</strong>
+                  <small>拖拽项目到此处或点击 + 预演清理</small>
+                </span>
+              </button>
+              <button type="button" class="collector-trash-btn" id="collector-trash-btn" disabled>移到废纸篓</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-bottom">
+          <span>交互与目录数据均为网页演示，不读取真实磁盘</span>
+          <span>点击下钻 / 悬停联动 / 收集器与撤销</span>
+        </div>
+      </section>
+
+      <section class="intro-section disk-intro">
+        <p class="eyebrow">VISUALIZE, NOT GUESS</p>
+        <h2>告别漫无目的的翻找</h2>
+        <p>不必在层层文件夹里反复打开「显示简介」。当整块磁盘化作按比例绽放的彩色花瓣，真正占据空间的目录与大文件会在第一眼自然浮现，琐碎细节安静退居边缘。</p>
+      </section>
+
+      <section class="disk-bento" aria-label="核心技术特性">
+        <article class="bento-card span-7 bento-engine">
+          <div class="bento-head">
+            <span class="bento-index">01 / SCAN ENGINE</span>
+            <h3>极速底层扫描，快而不扰系统</h3>
+            <p>直接调用 macOS 底层 <code>getattrlistbulk</code> 批量读取目录属性，减少内核切换；并通过 <code>DiskArbitration</code> 与 <code>IOKit</code> 自动识别存储介质，匹配最合适的并发线程与 <code>IOPOL_UTILITY</code> 低优先级磁盘 I/O。</p>
+          </div>
+          <div class="medium-grid" aria-label="按存储介质自适应并发策略">
+            <div class="medium-item">
+              <span>内置 SSD</span>
+              <strong>4–8 线程</strong>
+              <div class="medium-bar"><i style="width:94%"></i></div>
+            </div>
+            <div class="medium-item">
+              <span>外置 SSD</span>
+              <strong>2–6 线程</strong>
+              <div class="medium-bar"><i style="width:72%"></i></div>
+            </div>
+            <div class="medium-item">
+              <span>网络卷</span>
+              <strong>3 线程</strong>
+              <div class="medium-bar"><i style="width:45%"></i></div>
+            </div>
+            <div class="medium-item">
+              <span>机械硬盘</span>
+              <strong>2 线程</strong>
+              <div class="medium-bar"><i style="width:30%"></i></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="bento-card span-5 bento-safety">
+          <div class="bento-head">
+            <span class="bento-index">02 / SAFETY FIRST</span>
+            <h3>系统护栏与一键撤销</h3>
+            <p>自动拦截系统核心目录与卷挂载点；清理前二次校验文件身份未变化，始终安全移入废纸篓而非永久销毁，并支持分批一键恢复与图表即时回流。</p>
+          </div>
+          <div class="shield-chips" aria-label="受保护路径示例">
+            <span>/System</span>
+            <span>/usr</span>
+            <span>/bin</span>
+            <span>/sbin</span>
+            <span>用户主目录根</span>
+            <span>卷挂载点</span>
+          </div>
+        </article>
+
+        <article class="bento-card span-5 bento-accuracy">
+          <div class="bento-head">
+            <span class="bento-index">03 / ACCURACY</span>
+            <h3>每一 GB，都算得准确</h3>
+            <p>按 <code>(device, inode)</code> 自动对硬链接去重，跳过跨宗卷与 APFS 系统别名避免重复统计，以真实磁盘分配块大小（<code>allocatedSize</code>）计算每一处占用。</p>
+          </div>
+          <div class="accuracy-metrics">
+            <div>
+              <strong>inode</strong>
+              <span>硬链接不重复计费</span>
+            </div>
+            <div>
+              <strong>8 层</strong>
+              <span>嵌套光谱环可视化</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bento-card span-7 bento-native">
+          <div class="bento-head">
+            <span class="bento-index">04 / NATIVE MACOS</span>
+            <h3>顺手的原生桌面细节</h3>
+            <p>右键即可 QuickLook 快速预览、在 Finder 中定位，或对照查看「磁盘占用」与「文件逻辑大小」。采用低内存紧凑树结构，退出磁盘分析时即刻释放缓存，ClipStash 继续轻盈驻留菜单栏。</p>
+          </div>
+          <div class="native-pills" aria-label="原生快捷操作">
+            <span>QuickLook 预览</span>
+            <span>Finder 定位</span>
+            <span>Cmd / Shift 多选</span>
+            <span>磁盘占用 vs 逻辑大小</span>
+            <span>退出即释放内存</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="disk-workflow" aria-label="三步整理流程">
+        <div class="workflow-heading">
+          <p class="eyebrow">SCAN · COLLECT · CLEAN</p>
+          <h2>三步，找回清爽空间</h2>
+        </div>
+        <div class="workflow-grid">
+          <article class="workflow-step">
+            <span>01</span>
+            <h3>选择磁盘或目录</h3>
+            <p>在 ClipStash 菜单栏「工具」页一键打开，选择本机宗卷或任意指定文件夹开始扫描。</p>
+          </article>
+          <article class="workflow-step">
+            <span>02</span>
+            <h3>悬停对比与逐层下钻</h3>
+            <p>沿着色彩与面积直觉点击文件夹层层深入，配合右侧排序明细快速锁定位居前列的占用项。</p>
+          </article>
+          <article class="workflow-step">
+            <span>03</span>
+            <h3>收集预演与安全清理</h3>
+            <p>将待清理项拖入底部收集器实时查看释放总量，确认后安全移入废纸篓，随时可一键撤销。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="disk-specs" aria-label="技术规格">
+        <dl class="specs-grid">
+          <div>
+            <dt>运行平台</dt>
+            <dd>macOS 原生（SwiftUI + AppKit）</dd>
+          </div>
+          <div>
+            <dt>扫描引擎</dt>
+            <dd>Darwin getattrlistbulk + IOKit</dd>
+          </div>
+          <div>
+            <dt>隐私与安全</dt>
+            <dd>100% 本地运行 · 仅移入废纸篓</dd>
+          </div>
+          <div>
+            <dt>打开入口</dt>
+            <dd>ClipStash 菜单栏「工具」标签页</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="closing disk-closing">
+        <p class="eyebrow">PART OF CLIPSTASH</p>
+        <h2>顺手的工具，藏在手边</h2>
+        <div class="closing-actions">
+          <a class="text-link" href="clipstash.html">← 返回 ClipStash</a>
+          <a class="text-link secondary" href="notch.html">接着探索 Notch →</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="clipstash.html">← 返回 ClipStash</a>
+      <a href="index.html">作品集首页</a>
+      <span>兔仔很忙 · 作品集</span>
+      <a href="#top">回到顶部 ↑</a>
+    </footer>
+  </div>
+</body>
+</html>
