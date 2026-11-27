@@ -85,3 +85,16 @@
 @media (max-width:700px) {
   .feature-list .feature-symbol { width:72px; text-align:center; }
 }
+.quota-side strong.ok { color:#28d55a; }
+.actual-island.hud .quota-side.left b { color:#7fd59d; }
+.actual-island.hud .quota-side.right b { color:#6aaaff; }
+.actual-island.shelf.floating.open { border:1px solid #ffffff78; background:linear-gradient(145deg,#5a5f64d6,#232629d9); box-shadow:inset 0 1.5px 4px #ffffff6e,inset 0 -1px 2px #ffffff24,0 16px 32px #0009; }
+.pop-search.is-hidden { display:none; }
+.pop-tools { display:flex; flex-direction:column; gap:10px; padding:6px 8px; }
+.pop-tool-card { display:flex; flex-direction:column; gap:6px; width:100%; padding:14px 14px; border:1px solid #ffffff1c; border-radius:10px; background:#ffffff0b; color:#eee; text-align:left; cursor:pointer; transition:border-color .2s,background-color .2s; }
+.pop-tool-card:hover, .pop-tool-card.active { border-color:#d2ae7499; background:#ffffff14; }
+.pop-tool-card strong { font-size:13px; font-weight:600; color:#f4ece0; }
+.pop-tool-card small { font-size:11px; line-height:1.5; color:#b5aba0; }
+@media (min-width:701px) {
+  .capture-toolbar-wrap { width:min(740px,92%); }
+}
